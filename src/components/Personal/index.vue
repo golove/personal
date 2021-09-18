@@ -1,81 +1,69 @@
 <template>
   <div class="card w-full sm:w-96 h-40 m-2 text-bluegray font-yahei">
     <div class="front flex rounded-xl shadow-md overflow-hidden">
-      <img class="h-auto w-2/7" :src="userInfo.avatar" alt="avatar" />
+      <img class="h-auto w-2/7" v-if="userInfo.avatar" :src="userInfo.avatar" alt="avatar" />
       <div class="p-2">
         <p>
           <span class="text-maintextcolor tracking-normal text-sm">姓 名</span>
-          <span class="text-base">&nbsp;&nbsp;{{ userInfo.name }}</span>
+          <span v-if="userInfo.name" class="text-base">&nbsp;&nbsp;{{ userInfo.name }}</span>
         </p>
         <p>
           <span class="text-maintextcolor text-sm">性 别</span>
-          <span class="text-sm"
-            >&nbsp;&nbsp;{{ userInfo.gender }}&nbsp;&nbsp;</span
-          >
-          <span class="text-maintextcolor text-sm whitespace-pre"> 民 族</span>
-          <span class="text-sm">&nbsp;&nbsp;{{ userInfo.nationality }}</span>
+          <span v-if="userInfo.gender" class="text-sm">&nbsp;&nbsp;{{ userInfo.gender }}&nbsp;&nbsp;</span>
+          <span class="text-maintextcolor text-sm whitespace-pre">民 族</span>
+          <span v-if="userInfo.nationality" class="text-sm">&nbsp;&nbsp;{{ userInfo.nationality }}</span>
         </p>
-        <p>
+        <p v-if="userInfo.identity">
           <span class="text-maintextcolor text-sm">出 生</span>
-          <span class="text-sm"
-            >&nbsp;&nbsp;{{ userInfo.identity.slice(6, 10) }}</span
-          >
+          <span class="text-sm">&nbsp;&nbsp;{{ userInfo.identity.slice(6, 10) }}</span>
           <span class="text-maintextcolor text-sm">&nbsp;年</span>
-          <span class="text-sm"
-            >&nbsp;&nbsp;{{ userInfo.identity.slice(10, 12) }}</span
-          >
+          <span class="text-sm">&nbsp;&nbsp;{{ userInfo.identity.slice(10, 12) }}</span>
           <span class="text-maintextcolor text-sm">&nbsp;月</span>
-          <span class="text-sm"
-            >&nbsp;&nbsp;{{ userInfo.identity.slice(12, 14) }}</span
-          >
+          <span class="text-sm">&nbsp;&nbsp;{{ userInfo.identity.slice(12, 14) }}</span>
           <span class="text-maintextcolor text-sm">&nbsp;日</span>
         </p>
         <p class="flex justify-start">
           <span class="inline-block w-9 text-maintextcolor text-sm">住 址</span>
           <span
-            class="
-              h-11
-              w-52
-              inline-block
-              text-sm
-              overflow-ellipsis overflow-hidden
-            "
-            >{{ userInfo.adress }}</span
-          >
+            v-if="userInfo.adress"
+            class="h-11 w-52 inline-block text-sm overflow-ellipsis overflow-hidden"
+          >{{ userInfo.adress }}</span>
         </p>
         <p>
           <span class="text-maintextcolor text-sm">电 话</span>
-          <span class="text-sm">&nbsp;&nbsp;{{ userInfo.telphone }}</span>
+          <span v-if="userInfo.telphone" class="text-sm">&nbsp;&nbsp;{{ userInfo.telphone }}</span>
         </p>
       </div>
     </div>
     <div class="back rounded-xl shadow-md overflow-hidden p-4">
       <p>
         <span class="text-maintextcolor text-sm">QQ 账 号</span>
-        <span class="text-base">&nbsp;&nbsp;{{ userInfo.QQ }}</span>
+        <span v-if="userInfo.QQ" class="text-base">&nbsp;&nbsp;{{ userInfo.QQ }}</span>
       </p>
       <p>
         <span class="text-maintextcolor text-sm">微 信 账 号</span>
-        <span class="text-base">&nbsp;&nbsp;{{ userInfo.weixin }}</span>
+        <span v-if="userInfo.weixin" class="text-base">&nbsp;&nbsp;{{ userInfo.weixin }}</span>
       </p>
       <p>
         <span class="text-maintextcolor text-sm">支付宝账号</span>
-        <span class="text-base">&nbsp;&nbsp;{{ userInfo.zhifubao }}</span>
+        <span v-if="userInfo.zhifubao" class="text-base">&nbsp;&nbsp;{{ userInfo.zhifubao }}</span>
       </p>
       <p>
         <span class="text-maintextcolor text-sm">银行卡账号</span>
-        <span class="text-base">&nbsp;&nbsp;{{ userInfo.bank }}</span>
+        <span v-if="userInfo.bank" class="text-base">&nbsp;&nbsp;{{ userInfo.bank }}</span>
       </p>
       <p>
         <span class="text-maintextcolor text-sm">公民身份号码</span>
-        <span class="text-base">&nbsp;&nbsp;{{ userInfo.identity }}</span>
+        <span v-if="userInfo.identity" class="text-base">&nbsp;&nbsp;{{ userInfo.identity }}</span>
       </p>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: { userInfo: Object },
+  props: {
+    userInfo: Object
+  },
 };
 </script>
 <style>
@@ -100,7 +88,6 @@ export default {
 }
 
 .front {
-  background-size: cover;
   overflow: hidden;
 }
 

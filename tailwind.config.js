@@ -4,7 +4,11 @@ module.exports = {
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}'
   ],
-  darkMode: false, // or 'media' or 'class'
+  plugins: [
+    require('@tailwindcss/forms'),
+    // ...
+  ],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {
       sm: '480px',
